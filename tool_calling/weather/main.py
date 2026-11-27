@@ -73,4 +73,4 @@ def run(user_input: str) -> str:
 
 
 if __name__ == "__main__":
-    print(run("대구 날씨 어때?"))
+    print(run("부산 2주 날씨 알려줘."))

@@ -62,4 +62,38 @@ tools = [
         },
         "strict": True,
     },
+    {
+        "name": "get_forecast",
+        "description": (
+            "Returns the daily weather forecast for one city for up to 7 days ahead, "
+            "starting tomorrow. Each day includes date, min/max temperature, weather condition, "
+            "and chance of precipitation (%). "
+            "Use this when the user asks about tomorrow, this weekend, or any future date. "
+            "It does not include today's current conditions; use get_current_weather for that. "
+            "Forecasts beyond 3 days are less reliable, so mention that uncertainty when relevant. "
+            "If the city is not found, it returns an error with code CITY_NOT_FOUND. "
+            "Requests for more than 7 days return an error with code RANGE_EXCEEDED."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "city": {
+                    "type": "string",
+                    "description": "City name in English, e.g. 'Seoul'. One city per call.",
+                },
+                "days": {
+                    "type": "integer",
+                    "description": "Number of days to forecast, from 1 (tomorrow only) to 7.",
+                },
+                "unit": {
+                    "type": "string",
+                    "enum": ["celsius", "fahrenheit"],
+                    "description": "Temperature unit. Use celsius unless the user asks otherwise.",
+                },
+            },
+            "required": ["city", "days", "unit"],
+            "additionalProperties": False,
+        },
+        "strict": True
+    },
 ]
